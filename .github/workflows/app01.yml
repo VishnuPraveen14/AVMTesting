@@ -11,6 +11,11 @@ on:
           - Plan
           - Plan&Apply
           - Plan&Destroy
+
+      environment:
+        description: 'Environment'
+        required: true
+        default: 'dev'
   push:
     branches:
       - "main"
@@ -39,12 +44,18 @@ jobs:
       #   with:
       #     creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      -  name: Echo Secrets (for troubleshooting only)
+        run: |
+          echo "Client ID: ${{ secrets.ARM_CLIENT_ID }}"
+          echo "Tenant ID: ${{ secrets.ARM_TENANT_ID }}"
+          echo "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+
       - name: Log in with Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.ARM_CLIENT_ID }}
-          tenant-id: ${{ secrets.ARM_TENANT_ID }}
-          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v2

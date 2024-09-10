@@ -29,15 +29,15 @@ resource "azurerm_resource_group" "this" {
 # Do not specify location here due to the randomization above.
 # Leaving location as `null` will cause the module to use the resource group location
 # with a data source.
-module "avm-ptn-aks-production" {
-  source  = "Azure/avm-ptn-aks-production/azurerm"
-  version = "0.1.0"
-  kubernetes_version  = var.kubernetes_version
-  enable_telemetry    = var.enable_telemetry # see variables.tf
-  name                = var.name
-  resource_group_name = azurerm_resource_group.this.name
-  location            = var.location # Hardcoded instead of using module.regions because The "for_each" map includes keys derived from resource attributes that cannot be determined until apply, and so Terraform cannot determine the full set of keys that will identify the instances of this resource.
-  pod_cidr            = var.pod_cidr
-  node_cidr           = var.node_cidr
-  node_pools          = var.node_pools
-}
+# module "avm-ptn-aks-production" {
+#   source  = "Azure/avm-ptn-aks-production/azurerm"
+#   version = "0.1.0"
+#   kubernetes_version  = var.kubernetes_version
+#   enable_telemetry    = var.enable_telemetry # see variables.tf
+#   name                = var.name
+#   resource_group_name = azurerm_resource_group.this.name
+#   location            = var.location # Hardcoded instead of using module.regions because The "for_each" map includes keys derived from resource attributes that cannot be determined until apply, and so Terraform cannot determine the full set of keys that will identify the instances of this resource.
+#   pod_cidr            = var.pod_cidr
+#   node_cidr           = var.node_cidr
+#   node_pools          = var.node_pools
+# }

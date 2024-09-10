@@ -17,10 +17,6 @@ on:
           - Plan
           - Plan&Apply
           - Plan&Destroy
-env:
-  TF_VAR_CLIENT: ${{ secrets.ARM_CLIENT_ID }}
-  TF_VAR_SUB_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-  TF_VAR_TENANT: ${{ secrets.ARM_TENANT_ID }}
 
 permissions:
       id-token: write
@@ -49,14 +45,14 @@ jobs:
          run: |
           echo "Client ID: ${{ secrets.ARM_CLIENT_ID }}"
           echo "Tenant ID: ${{ secrets.ARM_TENANT_ID }}"
-          echo "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+          echo "${{ secrets.ARM_SUBSCRIPTION_ID }}"
 
       - name: Log in with Azure
         uses: azure/login@v2
         with:
-          client-id: '37508c2f-633b-4c3a-bf76-62f741b97b4b'
-          tenant-id: '680f956b-1eaf-4bb1-a703-24b289ea568f'
-          subscription-id: 'ce326908-2fd8-4d82-aa1f-106533ca8b6a'
+          client-id: ${{ secrets.ARM_CLIENT_ID }}
+          tenant-id: ${{ secrets.ARM_TENANT_ID }}
+          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
 
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v2

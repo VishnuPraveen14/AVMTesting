@@ -53,3 +53,8 @@ module "avm-res-keyvault-vault_secret" {
   name   = "mySecret"
   value  = "mySecretValue"
 }
+
+module "avm-ptn-avd-lza-managementplane_example_default" {
+  source  = "Azure/avm-ptn-avd-lza-managementplane/azurerm//examples/default"
+  version = "0.1.5"
+}

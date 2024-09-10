@@ -55,7 +55,7 @@ module "avm-res-keyvault-vault_secret" {
 }
 
 module "avd" {
-  source = "../../modules/avd"
+  source = "./modules/avd"
   # source             = "Azure/avm-ptn-avd-lza-managementplane/azurerm"
   enable_telemetry                                   = var.enable_telemetry
   location                                           = azurerm_resource_group.this.location

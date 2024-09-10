@@ -1,5 +1,11 @@
 name: "App01-Deployment"
-on:
+on: 
+  push:
+    branches:
+     - main
+  pull_request:
+    branches:
+     - main
   workflow_dispatch:
     inputs:
       action:
@@ -11,22 +17,24 @@ on:
           - Plan
           - Plan&Apply
           - Plan&Destroy
-  push:
-    branches:
-      - "main"
 env:
   TF_VAR_CLIENT: ${{ secrets.ARM_CLIENT_ID }}
   TF_VAR_SUB_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
   TF_VAR_TENANT: ${{ secrets.ARM_TENANT_ID }}
 
-
-jobs:
-  create-resource:
-    runs-on: ubuntu-latest
-
-    permissions:
+permissions:
       id-token: write
       contents: read
+
+jobs:
+  analysis:
+    name: Analyse the Terraform
+    environment: dev
+    runs-on: ubuntu-latest
+    env:
+      TF_VAR_CLIENT: ${{ secrets.ARM_CLIENT_ID }}
+      TF_VAR_SUB_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      TF_VAR_TENANT: ${{ secrets.ARM_TENANT_ID }}
 
     steps:
       - name: Checkout the code

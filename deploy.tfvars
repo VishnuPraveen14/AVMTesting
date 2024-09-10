@@ -1,7 +1,19 @@
-rg_location = "eastus"
-rg_name = "avmModuleTesting2"
-law_location = "eastus"
-law_log_analytics_workspace_name = "law-test2"
-law_resource_group_name = "avmModuleTesting2"
-law_name = "law12"
-aa_name = "tfautomationacct12"
+
+enable_telemetry    = true
+resource_group_name = "aks-rg-02"
+location            = "EastUS2"
+name                = "aks-02"
+kubernetes_version  = "1.28"
+node_cidr           = "10.31.0.0/16"
+pod_cidr            = "192.168.0.0/16"
+node_pools = {
+    workload = {
+      name                 = "workload"
+      vm_size              = "Standard_D2d_v5"
+      orchestrator_version = "1.28"
+      max_count            = 110
+      min_count            = 2
+      os_sku               = "Ubuntu"
+      mode                 = "User"
+    }
+  }

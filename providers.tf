@@ -1,21 +1,26 @@
 terraform {
-  backend "azurerm" {
-    resource_group_name  = "lumen-test-rg"
-    storage_account_name = "tfbackendstrgacct12"
-    container_name       = "terraformtest1"
-    key                  = "terraform.tfstate"
-  }
-  required_version = ">= 1.0.0"
+  required_version = ">= 1.3.0"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = ">= 3.7.0, < 4.0.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = ">= 3.5.0, < 4.0.0"
+    }
+    # azapi = {
+    #   source  = "Azure/azapi"
+    #   version = ">= 1.4.0, < 2.0" #"~> 1.13"
+    # }
   }
-
 }
 
 provider "azurerm" {
-  features {}
-  skip_provider_registration = true
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
 }
+

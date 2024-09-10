@@ -26,7 +26,7 @@ resource "azurerm_resource_group" "this" {
 }
 
 module "avm-res-keyvault-vault_example_default" {
-  source  = "Azure/avm-res-keyvault-vault/azurerm//examples/default"
+  source  = "Azure/avm-res-keyvault-vault/azurerm"
   version = "0.9.1"
   location            = var.location
   resource_group_name = azurerm_resource_group.this.name

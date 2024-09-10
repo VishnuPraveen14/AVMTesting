@@ -1,0 +1,7 @@
+rg_location = "eastus"
+rg_name = "avmModuleTesting2"
+law_location = "eastus"
+law_log_analytics_workspace_name = "law-test2"
+law_resource_group_name = "avmModuleTesting2"
+law_name = "law12"
+aa_name = "tfautomationacct12"

@@ -15,6 +15,24 @@ variable "resource_group_name" {
   nullable    = false
 }
 
+variable "keyvault_name" {
+  type        = string
+  description = "The name of the Key Vault to create."
+  nullable    = false
+}
+
+variable "tenant_id" {
+  type        = string
+  description = "The tenant ID to use for the Key Vault."
+  nullable    = false
+}
+
+variable "contacts" {
+  type        = list(string)
+  description = "The contacts to use for the Key Vault."
+  nullable    = false
+}
+
 variable "location" {
   type        = string
   description = "The Azure region where the resources should be deployed."

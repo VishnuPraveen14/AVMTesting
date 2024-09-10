@@ -25,6 +25,17 @@ resource "azurerm_resource_group" "this" {
   name     = var.resource_group_name
 }
 
+module "avm-res-keyvault-vault_example_default" {
+  source  = "Azure/avm-res-keyvault-vault/azurerm//examples/default"
+  version = "0.9.1"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.this.name
+  name                = var.keyvault_name
+  enable_telemetry    = var.enable_telemetry
+  tenant_id           = var.tenant_id
+  contacts            = var.contacts
+}
+
 # This is the module call
 # Do not specify location here due to the randomization above.
 # Leaving location as `null` will cause the module to use the resource group location

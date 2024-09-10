@@ -27,12 +27,6 @@ variable "tenant_id" {
   nullable    = false
 }
 
-variable "contacts" {
-  type        = list(string)
-  description = "The contacts to use for the Key Vault."
-  nullable    = false
-}
-
 variable "location" {
   type        = string
   description = "The Azure region where the resources should be deployed."

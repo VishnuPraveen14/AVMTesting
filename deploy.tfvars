@@ -19,4 +19,3 @@ node_pools = {
   }
 keyvault_name       = "lumen-aks-kv-02"
 tenant_id           = "680f956b-1eaf-4bb1-a703-24b289ea568f"
-contacts            = ["videepth@microsoft.com"]

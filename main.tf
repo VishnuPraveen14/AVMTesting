@@ -44,5 +44,4 @@ module "avm-res-keyvault-vault_example_default" {
   name                = var.keyvault_name
   enable_telemetry    = var.enable_telemetry
   tenant_id           = var.tenant_id
-  contacts            = var.contacts
 }

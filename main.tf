@@ -25,6 +25,11 @@ resource "azurerm_resource_group" "this" {
   name     = var.resource_group_name
 }
 
+module "naming" {
+  source  = "Azure/naming/azurerm"
+  version = ">= 0.3.0"
+}
+
 # module "avm-res-keyvault-vault_example_default" {
 #   source  = "Azure/avm-res-keyvault-vault/azurerm"
 #   version = "0.9.1"

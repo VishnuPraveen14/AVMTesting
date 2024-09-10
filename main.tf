@@ -45,3 +45,11 @@ module "avm-res-keyvault-vault_example_default" {
   enable_telemetry    = var.enable_telemetry
   tenant_id           = var.tenant_id
 }
+
+module "avm-res-keyvault-vault_secret" {
+  source  = "Azure/avm-res-keyvault-vault/azurerm//modules/secret"
+  version = "0.9.1"
+  key_vault_resource_id = module.avm-res-keyvault-vault_example_default.resource_id
+  name   = "mySecret"
+  value  = "mySecretValue"
+}

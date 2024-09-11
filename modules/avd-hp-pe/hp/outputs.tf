@@ -16,5 +16,5 @@ output "resource" {
 
 output "resource_id" {
   description = "This output is the full output for the resource to allow flexibility to reference all possible values for the resource. Example usage: module.<modulename>.resource.id"
-  value       = azurerm_virtual_desktop_host_pool.this
+  value       = azurerm_virtual_desktop_host_pool.this.id
 }

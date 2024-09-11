@@ -45,7 +45,7 @@ module "avm-res-desktopvirtualization-hostpool_example_private-endpoint" {
 module "avm-res-desktopvirtualization-applicationgroup" {
   source  = "Azure/avm-res-desktopvirtualization-applicationgroup/azurerm"
   version = "0.1.5"
-  virtual_desktop_application_group_host_pool_id = module.avm-res-desktopvirtualization-hostpool_example_private-endpoint.id
+  virtual_desktop_application_group_host_pool_id = module.avm-res-desktopvirtualization-hostpool_example_private-endpoint.resource_id
   virtual_desktop_application_group_location = var.location
   virtual_desktop_application_group_name = "vdag-avd-01"
   virtual_desktop_application_group_type = "Desktop"
@@ -55,7 +55,7 @@ module "avm-res-desktopvirtualization-applicationgroup" {
 module "avm-res-desktopvirtualization-applicationgroupremote" {
   source  = "Azure/avm-res-desktopvirtualization-applicationgroup/azurerm"
   version = "0.1.5"
-  virtual_desktop_application_group_host_pool_id = module.avm-res-desktopvirtualization-hostpool_example_private-endpoint.id
+  virtual_desktop_application_group_host_pool_id = module.avm-res-desktopvirtualization-hostpool_example_private-endpoint.resource_id
   virtual_desktop_application_group_location = var.location
   virtual_desktop_application_group_name = "vdag-avd-02"
   virtual_desktop_application_group_type = "RemoteApp"

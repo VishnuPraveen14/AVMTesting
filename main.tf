@@ -30,37 +30,44 @@ module "avm-res-keyvault-vault_example_default" {
   tenant_id           = var.tenant_id
 }
 
-module "avm-res-desktopvirtualization-hostpool_example_private-endpoint" {
-  source  = "Azure/avm-res-desktopvirtualization-hostpool/azurerm//examples/private-endpoint"
-  version = "0.2.1"
+module "hpavd" {
+  source = "./modules/avd-hp-pe"
   enable_telemetry = var.enable_telemetry
-  virtual_desktop_host_pool_name = "vdpool-avd-01"
-  virtual_desktop_host_pool_type = "Pooled"
-  virtual_desktop_host_pool_maximum_sessions_allowed = 10
-  virtual_desktop_host_pool_start_vm_on_connect = true
-  virtual_desktop_host_pool_load_balancer_type = "BreadthFirst"
+  location = var.location
+  
 }
 
+# module "avm-res-desktopvirtualization-hostpool_example_private-endpoint" {
+#   source  = "Azure/avm-res-desktopvirtualization-hostpool/azurerm//examples/private-endpoint"
+#   version = "0.2.1"
+#   enable_telemetry = var.enable_telemetry
+#   virtual_desktop_host_pool_name = "vdpool-avd-01"
+#   virtual_desktop_host_pool_type = "Pooled"
+#   virtual_desktop_host_pool_maximum_sessions_allowed = 10
+#   virtual_desktop_host_pool_start_vm_on_connect = true
+#   virtual_desktop_host_pool_load_balancer_type = "BreadthFirst"
+# }
 
-module "avm-res-desktopvirtualization-applicationgroup" {
-  source  = "Azure/avm-res-desktopvirtualization-applicationgroup/azurerm"
-  version = "0.1.5"
-  virtual_desktop_application_group_host_pool_id = module.avm-res-desktopvirtualization-hostpool_example_private-endpoint.resource_id
-  virtual_desktop_application_group_location = var.location
-  virtual_desktop_application_group_name = "vdag-avd-01"
-  virtual_desktop_application_group_type = "Desktop"
-  virtual_desktop_application_group_resource_group_name = azurerm_resource_group.this.name
-}
 
-module "avm-res-desktopvirtualization-applicationgroupremote" {
-  source  = "Azure/avm-res-desktopvirtualization-applicationgroup/azurerm"
-  version = "0.1.5"
-  virtual_desktop_application_group_host_pool_id = module.avm-res-desktopvirtualization-hostpool_example_private-endpoint.resource_id
-  virtual_desktop_application_group_location = var.location
-  virtual_desktop_application_group_name = "vdag-avd-02"
-  virtual_desktop_application_group_type = "RemoteApp"
-  virtual_desktop_application_group_resource_group_name = azurerm_resource_group.this.name
-}
+# module "avm-res-desktopvirtualization-applicationgroup" {
+#   source  = "Azure/avm-res-desktopvirtualization-applicationgroup/azurerm"
+#   version = "0.1.5"
+#   virtual_desktop_application_group_host_pool_id = module.avm-res-desktopvirtualization-hostpool_example_private-endpoint.resource_id
+#   virtual_desktop_application_group_location = var.location
+#   virtual_desktop_application_group_name = "vdag-avd-01"
+#   virtual_desktop_application_group_type = "Desktop"
+#   virtual_desktop_application_group_resource_group_name = azurerm_resource_group.this.name
+# }
+
+# module "avm-res-desktopvirtualization-applicationgroupremote" {
+#   source  = "Azure/avm-res-desktopvirtualization-applicationgroup/azurerm"
+#   version = "0.1.5"
+#   virtual_desktop_application_group_host_pool_id = module.avm-res-desktopvirtualization-hostpool_example_private-endpoint.resource_id
+#   virtual_desktop_application_group_location = var.location
+#   virtual_desktop_application_group_name = "vdag-avd-02"
+#   virtual_desktop_application_group_type = "RemoteApp"
+#   virtual_desktop_application_group_resource_group_name = azurerm_resource_group.this.name
+# }
 # module "avd" {
 #   source = "./modules/avd"
 #   # source             = "Azure/avm-ptn-avd-lza-managementplane/azurerm"

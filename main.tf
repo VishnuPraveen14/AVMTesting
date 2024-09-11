@@ -68,6 +68,18 @@ module "avm-res-desktopvirtualization-applicationgroupremote" {
   virtual_desktop_application_group_type = "RemoteApp"
   virtual_desktop_application_group_resource_group_name = azurerm_resource_group.this.name
 }
+
+module "avm-res-desktopvirtualization-workspace" {
+  source  = "Azure/avm-res-desktopvirtualization-workspace/azurerm"
+  version = "0.1.5"
+  # insert the 4 required variables here
+  virtual_desktop_workspace_location = var.location
+  resource_group_name = azurerm_resource_group.this.name
+  virtual_desktop_workspace_name = "vdws-avd-01"
+  virtual_desktop_workspace_resource_group_name = azurerm_resource_group.this.name
+
+}
+
 # module "avd" {
 #   source = "./modules/avd"
 #   # source             = "Azure/avm-ptn-avd-lza-managementplane/azurerm"

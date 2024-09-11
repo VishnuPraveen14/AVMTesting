@@ -55,7 +55,7 @@ module "avm-res-keyvault-vault_secret" {
   source  = "Azure/avm-res-keyvault-vault/azurerm//modules/secret"
   version = "0.9.1"
   key_vault_resource_id = module.avm-res-keyvault-vault_example_default.resource_id
-  name   = "mySecret"
+  name   = "mySecret1"
   value  = "mySecretValue"
 }
 

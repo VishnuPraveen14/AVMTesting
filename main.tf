@@ -59,6 +59,11 @@ module "avm-res-keyvault-vault_secret" {
   value  = "mySecretValue"
 }
 
+module "avm-res-desktopvirtualization-hostpool_example_private-endpoint" {
+  source  = "Azure/avm-res-desktopvirtualization-hostpool/azurerm//examples/private-endpoint"
+  version = "0.2.1"
+}
+
 # module "avd" {
 #   source = "./modules/avd"
 #   # source             = "Azure/avm-ptn-avd-lza-managementplane/azurerm"

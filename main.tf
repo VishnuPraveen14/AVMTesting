@@ -59,15 +59,15 @@ module "avm-res-desktopvirtualization-applicationgroup" {
   virtual_desktop_application_group_resource_group_name = azurerm_resource_group.this.name
 }
 
-# module "avm-res-desktopvirtualization-applicationgroupremote" {
-#   source  = "Azure/avm-res-desktopvirtualization-applicationgroup/azurerm"
-#   version = "0.1.5"
-#   virtual_desktop_application_group_host_pool_id = module.avm-res-desktopvirtualization-hostpool_example_private-endpoint.resource_id
-#   virtual_desktop_application_group_location = var.location
-#   virtual_desktop_application_group_name = "vdag-avd-02"
-#   virtual_desktop_application_group_type = "RemoteApp"
-#   virtual_desktop_application_group_resource_group_name = azurerm_resource_group.this.name
-# }
+module "avm-res-desktopvirtualization-applicationgroupremote" {
+  source  = "Azure/avm-res-desktopvirtualization-applicationgroup/azurerm"
+  version = "0.1.5"
+  virtual_desktop_application_group_host_pool_id = module.hpavd.hostpool_id
+  virtual_desktop_application_group_location = var.location
+  virtual_desktop_application_group_name = "vdag-avd-02"
+  virtual_desktop_application_group_type = "RemoteApp"
+  virtual_desktop_application_group_resource_group_name = azurerm_resource_group.this.name
+}
 # module "avd" {
 #   source = "./modules/avd"
 #   # source             = "Azure/avm-ptn-avd-lza-managementplane/azurerm"

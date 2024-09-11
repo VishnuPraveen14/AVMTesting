@@ -62,7 +62,7 @@ jobs:
           terraform_version: 1.9
 
       - name: Terraform Init
-        run: terraform init -backend=true -backend-config="storage_account_name=vishnudemo9934" -backend-config="container_name=test" -backend-config="key=terraform.tfstate"
+        run: terraform init -backend-config="resource_group_name=vishnuDemo" -backend-config="storage_account_name=vishnudemo9934" -backend-config="container_name=test" -backend-config="key=terraform.tfstate"
 
     
       - name: Terraform plan

@@ -31,6 +31,8 @@ jobs:
       TF_VAR_CLIENT: ${{ secrets.ARM_CLIENT_ID }}
       TF_VAR_SUB_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       TF_VAR_TENANT: ${{ secrets.ARM_TENANT_ID }}
+      TF_VAR_STORAGE_ACCOUNT: 'vishnudemo9934'
+      TF_VAR_STORAGE_CONTAINER: 'test'
 
     steps:
       - name: Checkout the code
@@ -60,7 +62,8 @@ jobs:
           terraform_version: 1.9
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -backend=remote -backend-config="storage_account_name=vishnudemo9934" -backend-config="container_name=test" -backend-config="key=terraform.tfstate"
+
     
       - name: Terraform plan
         id: plan

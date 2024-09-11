@@ -60,10 +60,6 @@ module "avm-res-desktopvirtualization-hostpool_example_private-endpoint" {
   virtual_desktop_host_pool_maximum_sessions_allowed = 10
   virtual_desktop_host_pool_start_vm_on_connect = true
   virtual_desktop_host_pool_load_balancer_type = "BreadthFirst"
-  virtual_desktop_host_pool_friendly_name = "vdpool-avd-01"
-  resource_group_name = azurerm_resource_group.this.name
-  virtual_desktop_host_pool_location = var.location
-  virtual_desktop_host_pool_resource_group_name = var.location
 }
 # module "avd" {
 #   source = "./modules/avd"

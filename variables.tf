@@ -165,3 +165,13 @@ variable "virtual_desktop_workspace_name" {
   default     = "vdws-avd-001"
   description = "The name of the AVD Workspace"
 }
+
+variable "storage_accont_name" {
+  description = "The name of the storage account"
+  type        = string
+}
+
+
+
+
+

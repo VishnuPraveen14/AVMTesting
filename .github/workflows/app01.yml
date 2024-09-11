@@ -1,5 +1,11 @@
 name: "App01-Deployment"
-on:
+on: 
+  push:
+    branches:
+     - main
+  pull_request:
+    branches:
+     - main
   workflow_dispatch:
     inputs:
       action:
@@ -11,24 +17,20 @@ on:
           - Plan
           - Plan&Apply
           - Plan&Destroy
-  push:
-    branches:
-      - "main"
-env:
-  TF_VAR_CLIENT: ${{ secrets.ARM_CLIENT_ID }}
-  TF_VAR_SUB_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-  TF_VAR_TENANT: ${{ secrets.ARM_TENANT_ID }}
-  TF_VAR_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-  ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
 
-
-jobs:
-  create-resource:
-    runs-on: ubuntu-latest
-
-    permissions:
+permissions:
       id-token: write
       contents: read
+
+jobs:
+  analysis:
+    name: Analyse the Terraform
+    environment: dev
+    runs-on: ubuntu-latest
+    env:
+      TF_VAR_CLIENT: ${{ secrets.ARM_CLIENT_ID }}
+      TF_VAR_SUB_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      TF_VAR_TENANT: ${{ secrets.ARM_TENANT_ID }}
 
     steps:
       - name: Checkout the code
@@ -38,6 +40,12 @@ jobs:
       #   uses: azure/login@v1
       #   with:
       #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      -  name: Echo Secrets (for troubleshooting only)
+         run: |
+          echo "Client ID: ${{ secrets.ARM_CLIENT_ID }}"
+          echo "Tenant ID: ${{ secrets.ARM_TENANT_ID }}"
+          echo "${{ secrets.ARM_SUBSCRIPTION_ID }}"
 
       - name: Log in with Azure
         uses: azure/login@v2
@@ -49,7 +57,7 @@ jobs:
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.6
+          terraform_version: 1.9
 
       - name: Terraform Init
         run: terraform init

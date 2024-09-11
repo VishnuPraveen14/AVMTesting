@@ -25,19 +25,56 @@ resource "azurerm_resource_group" "this" {
   name     = var.resource_group_name
 }
 
-# This is the module call
-# Do not specify location here due to the randomization above.
-# Leaving location as `null` will cause the module to use the resource group location
-# with a data source.
-module "avm-ptn-aks-production" {
-  source  = "Azure/avm-ptn-aks-production/azurerm"
-  version = "0.1.0"
-  kubernetes_version  = var.kubernetes_version
-  enable_telemetry    = var.enable_telemetry # see variables.tf
-  name                = var.name
-  resource_group_name = azurerm_resource_group.this.name
-  location            = var.location # Hardcoded instead of using module.regions because The "for_each" map includes keys derived from resource attributes that cannot be determined until apply, and so Terraform cannot determine the full set of keys that will identify the instances of this resource.
-  pod_cidr            = var.pod_cidr
-  node_cidr           = var.node_cidr
-  node_pools          = var.node_pools
+module "naming" {
+  source  = "Azure/naming/azurerm"
+  version = ">= 0.3.0"
 }
+
+# module "avm-res-keyvault-vault_example_default" {
+#   source  = "Azure/avm-res-keyvault-vault/azurerm"
+#   version = "0.9.1"
+#   location            = var.location
+#   resource_group_name = azurerm_resource_group.this.name
+#   name                = var.keyvault_name
+#   enable_telemetry    = var.enable_telemetry
+#   tenant_id           = var.tenant_id
+#   contacts            = var.contacts
+# }
+
+module "avm-res-keyvault-vault_example_default" {
+  source  = "Azure/avm-res-keyvault-vault/azurerm"
+  version = "0.9.1"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.this.name
+  name                = var.keyvault_name
+  enable_telemetry    = var.enable_telemetry
+  tenant_id           = var.tenant_id
+}
+
+module "avm-res-keyvault-vault_secret" {
+  source  = "Azure/avm-res-keyvault-vault/azurerm//modules/secret"
+  version = "0.9.1"
+  key_vault_resource_id = module.avm-res-keyvault-vault_example_default.resource_id
+  name   = "mySecret"
+  value  = "mySecretValue"
+}
+
+# module "avd" {
+#   source = "./modules/avd"
+#   # source             = "Azure/avm-ptn-avd-lza-managementplane/azurerm"
+#   enable_telemetry                                   = var.enable_telemetry
+#   location                                           = azurerm_resource_group.this.location
+#   resource_group_name                                = azurerm_resource_group.this.name
+#   virtual_desktop_workspace_name                     = var.virtual_desktop_workspace_name
+#   virtual_desktop_scaling_plan_time_zone             = var.virtual_desktop_scaling_plan_time_zone
+#   virtual_desktop_scaling_plan_name                  = var.virtual_desktop_scaling_plan_name
+#   virtual_desktop_host_pool_type                     = var.virtual_desktop_host_pool_type
+#   virtual_desktop_host_pool_load_balancer_type       = var.virtual_desktop_host_pool_load_balancer_type
+#   virtual_desktop_host_pool_name                     = var.virtual_desktop_host_pool_name
+#   virtual_desktop_host_pool_maximum_sessions_allowed = var.virtual_desktop_host_pool_maximum_sessions_allowed
+#   virtual_desktop_host_pool_start_vm_on_connect      = var.virtual_desktop_host_pool_start_vm_on_connect
+#   virtual_desktop_application_group_type             = var.virtual_desktop_application_group_type
+#   virtual_desktop_application_group_name             = var.virtual_desktop_application_group_name
+#   virtual_desktop_host_pool_friendly_name            = var.virtual_desktop_host_pool_friendly_name
+#   log_analytics_workspace_name                       = module.naming.log_analytics_workspace.name_unique
+# }

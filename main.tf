@@ -51,19 +51,20 @@ module "avm-res-keyvault-vault_example_default" {
   tenant_id           = var.tenant_id
 }
 
-module "avm-res-keyvault-vault_secret" {
-  source  = "Azure/avm-res-keyvault-vault/azurerm//modules/secret"
-  version = "0.9.1"
-  key_vault_resource_id = module.avm-res-keyvault-vault_example_default.resource_id
-  name   = "mySecret1"
-  value  = "mySecretValue"
-}
-
 module "avm-res-desktopvirtualization-hostpool_example_private-endpoint" {
   source  = "Azure/avm-res-desktopvirtualization-hostpool/azurerm//examples/private-endpoint"
   version = "0.2.1"
+  enable_telemetry = var.enable_telemetry
+  virtual_desktop_host_pool_name = "vdpool-avd-01"
+  virtual_desktop_host_pool_type = "Pooled"
+  virtual_desktop_host_pool_maximum_sessions_allowed = 10
+  virtual_desktop_host_pool_start_vm_on_connect = true
+  virtual_desktop_host_pool_load_balancer_type = "BreadthFirst"
+  virtual_desktop_host_pool_friendly_name = "vdpool-avd-01"
+  resource_group_name = azurerm_resource_group.this.name
+  virtual_desktop_host_pool_location = var.location
+  virtual_desktop_host_pool_resource_group_name = var.location
 }
-
 # module "avd" {
 #   source = "./modules/avd"
 #   # source             = "Azure/avm-ptn-avd-lza-managementplane/azurerm"

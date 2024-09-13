@@ -1,7 +1,7 @@
 
 enable_telemetry    = true
-resource_group_name = "lumen-aks-rg-02"
-location            = "EastUS2"
+resource_group_name = "RG-AVDGHLab"
+location            = "EastUS"
 name                = "aks-02"
 kubernetes_version  = "1.28"
 node_cidr           = "10.48.0.0/16"

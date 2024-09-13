@@ -4,7 +4,7 @@ resource_group_name = "RG-AVDGITHUB"
 location            = "EastUS"
 name                = "aks-02"
 kubernetes_version  = "1.28"
-node_cidr           = "10.31.0.0/16"
+node_cidr           = "10.48.0.0/16"
 pod_cidr            = "192.168.0.0/16"
 node_pools = {
     workload = {
@@ -17,5 +17,5 @@ node_pools = {
       mode                 = "User"
     }
   }
-keyvault_name       = "lumen-aks-kv-02"
-tenant_id           = "680f956b-1eaf-4bb1-a703-24b289ea568f"
+keyvault_name       = "AVD-GHAKS"
+tenant_id           = "71695e40-f167-42cd-a8c7-143f394885ec"

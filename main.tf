@@ -23,6 +23,7 @@ module "hpavd" {
   source = "./modules/avd-hp-pe"
   enable_telemetry = var.enable_telemetry
   location = var.location
+  resource_group_name = var.resource_group_name
 }
 
 
@@ -55,9 +56,4 @@ module "avm-res-desktopvirtualization-workspace" {
   virtual_desktop_workspace_name = "vdws-avd-01"
   virtual_desktop_workspace_resource_group_name = azurerm_resource_group.this.name
 
-}
-
-module "avm-res-storage-storageaccount_example_private-endpoint-manage_dns_zone_group" {
-  source  = "Azure/avm-res-storage-storageaccount/azurerm//examples/private-endpoint-manage_dns_zone_group"
-  version = "0.2.6"
 }

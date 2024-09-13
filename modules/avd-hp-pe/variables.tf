@@ -54,3 +54,9 @@ variable "location" {
   description = "The Azure region where the resources should be deployed."
   nullable    = false
 }
+
+variable "resource_group_name" {
+  type        = string
+  description = "The name of the resource group in which the resources should be deployed."
+  nullable    = false
+}

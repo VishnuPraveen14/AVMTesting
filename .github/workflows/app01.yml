@@ -31,8 +31,8 @@ jobs:
       AZURE_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       AZURE_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       AZURE_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-      TF_VAR_STORAGE_ACCOUNT: 'vishnudemo9934'
-      TF_VAR_STORAGE_CONTAINER: 'test'
+      TF_VAR_STORAGE_ACCOUNT: 'avddevopsautomation'
+      TF_VAR_STORAGE_CONTAINER: 'avdghtfstate'
       ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
 
     steps:

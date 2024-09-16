@@ -126,7 +126,7 @@ variable "virtual_desktop_host_pool_load_balancer_type" {
 
 variable "virtual_desktop_host_pool_maximum_sessions_allowed" {
   type        = number
-  default     = 16
+  default     = 4
   description = "(Optional) A valid integer value from 0 to 999999 for the maximum number of users that have concurrent sessions on a session host. Should only be set if the `type` of your Virtual Desktop Host Pool is `Pooled`."
 }
 

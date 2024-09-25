@@ -64,3 +64,4 @@ module "avm-res-storage-storageaccount" {
     ]
   }
 }
+}

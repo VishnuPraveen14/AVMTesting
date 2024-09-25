@@ -9,10 +9,10 @@ terraform {
       source  = "hashicorp/random"
       version = ">= 3.5.0, < 4.0.0"
     }
-    # azapi = {
-    #   source  = "Azure/azapi"
-    #   version = ">= 1.4.0, < 2.0" #"~> 1.13"
-    # }
+   azapi = {
+       source  = "Azure/azapi"
+      version = ">= 1.4.0, < 2.0" #"~> 1.13"
+     }
   }
 }
 
@@ -23,4 +23,7 @@ provider "azurerm" {
     }
   }
 }
+
+
+provider "azapi" { }
 
